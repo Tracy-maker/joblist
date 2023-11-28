@@ -10,6 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 import { View } from "react-native-web";
 
+
 const Home = () => {
   const router = useRouter();
 
@@ -31,8 +32,8 @@ const Home = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.medium }}>
           <Welcome />
-          <Popularjobs />
-          <Nearbyjobs />
+          <Popularjobs/>
+          <Nearbyjobs/>
         </View>
       </ScrollView>
     </SafeAreaView>
