@@ -26,12 +26,12 @@ const JobDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
 
-  const { data, isLoading, error, refetch } = useFetch("job-details", {
+  const { data, isLoading, error, refetch } = useFetch(" job-details", {
     job_id: params.id,
   });
 
-  const [activeTab, setActiveTab] = useState(tabs[0]);
   const [refreshing, setRefreshing] = useState(false);
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -39,32 +39,28 @@ const JobDetails = () => {
     setRefreshing(false)
   }, []);
 
-
   const displayTabContent = () => {
     switch (activeTab) {
       case "Qualifications":
         return (
           <Specifics
-            title='Qualifications'
-            points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
+            title="Qualifications"
+            points={data[0].job_hightlights?.Qualifications ?? ["N/A"]}
           />
         );
-
       case "About":
         return (
           <JobAbout info={data[0].job_description ?? "No data provided"} />
         );
-
       case "Responsibilities":
         return (
           <Specifics
-            title='Responsibilities'
-            points={data[0].job_highlights?.Responsibilities ?? ["N/A"]}
+            title="Qualifications"
+            points={data[0].job_hightlights?.Responsibilities ?? ["N/A"]}
           />
         );
-
       default:
-        return null;
+        break;
     }
   };
 
@@ -78,28 +74,29 @@ const JobDetails = () => {
           headerLeft: () => (
             <ScreenHeaderBtn
               iconUrl={icons.left}
-              dimension='60%'
+              dimension="60%"
               handlePress={() => router.back()}
             />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
+            <ScreenHeaderBtn iconUrl={icons.share} dimension="60%" />
           ),
           headerTitle: "",
         }}
       />
-
       <>
-        <ScrollView showsVerticalScrollIndicator={false}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         >
           {isLoading ? (
-            <ActivityIndicator size='large' color={COLORS.primary} />
+            <ActivityIndicator size="large" color={COLORS.primary} />
           ) : error ? (
             <Text>Something went wrong</Text>
           ) : data.length === 0 ? (
-            <Text>No data available</Text>
+            <Text>No data</Text>
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
               <Company
@@ -108,7 +105,6 @@ const JobDetails = () => {
                 companyName={data[0].employer_name}
                 location={data[0].job_country}
               />
-
               <JobTabs
                 tabs={tabs}
                 activeTab={activeTab}
@@ -119,11 +115,14 @@ const JobDetails = () => {
             </View>
           )}
         </ScrollView>
-
-        <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} />
+        <JobFooter
+          url={
+            data[0]?.job_google_link ??
+            "https://careers.google.com/jobs/results/"
+          }
+        />
       </>
     </SafeAreaView>
   );
 };
-
 export default JobDetails;
