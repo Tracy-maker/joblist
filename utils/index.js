@@ -1,3 +1,6 @@
+process.env.EXPO_ROUTER_APP_ROOT = './app';
+
+
 export const checkImageURL = (url) => {
   if (!url) return false;
   else {
