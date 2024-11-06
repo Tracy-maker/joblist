@@ -1,58 +1,64 @@
 import { StyleSheet } from "react-native";
-
-import { COLORS, FONT, SHADOWS, SIZES } from "../../../../constants";
+import { COLORS, FONT, SIZES } from "../../../../constants";
 
 const styles = StyleSheet.create({
   container: (selectedJob, item) => ({
-    width: 250,
-    padding: SIZES.xLarge,
-    backgroundColor: selectedJob === item.job_id ? COLORS.primary : "#FFF",
-    borderRadius: SIZES.medium,
-    justifyContent: "space-between",
-    ...SHADOWS.medium,
-    shadowColor: COLORS.white,
+    width: 280, // 增加卡片宽度
+    paddingVertical: SIZES.medium,
+    paddingHorizontal: SIZES.medium,
+    borderRadius: SIZES.large,
+    backgroundColor: selectedJob === item.job_id ? COLORS.primary : "#FFFFFF",
+    marginVertical: SIZES.small,
+    alignItems: "flex-start",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: SIZES.small,
   }),
-  logoContainer: (selectedJob, item) => ({
+  logoContainer: {
     width: 50,
     height: 50,
-    backgroundColor: selectedJob === item.job_id ? "#FFF" : COLORS.white,
-    borderRadius: SIZES.medium,
-    justifyContent: "center",
+    borderRadius: 25,
+    backgroundColor: COLORS.lightGray,
     alignItems: "center",
-  }),
+    justifyContent: "center",
+    marginBottom: SIZES.medium, // 增加底部间距
+  },
   logoImage: {
-    width: "70%",
-    height: "70%",
+    width: "75%",
+    height: "75%",
   },
   companyName: {
     fontSize: SIZES.medium,
-    fontFamily: FONT.regular,
-    color: "#B3AEC6",
-    marginTop: SIZES.small / 1.5,
+    fontFamily: FONT.medium,
+    color: COLORS.gray,
+    marginBottom: SIZES.small,
   },
   infoContainer: {
-    marginTop: SIZES.large,
+    marginTop: SIZES.small,
+    width: "100%",
   },
   jobName: (selectedJob, item) => ({
     fontSize: SIZES.large,
-    fontFamily: FONT.medium,
-    color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
+    fontFamily: FONT.bold,
+    color: selectedJob === item.job_id ? "#FFFFFF" : COLORS.primary,
+    marginBottom: SIZES.small / 2,
   }),
   infoWrapper: {
     flexDirection: "row",
-    marginTop: 5,
-    justifyContent: "flex-start",
     alignItems: "center",
+    marginTop: SIZES.small,
   },
   publisher: (selectedJob, item) => ({
-    fontSize: SIZES.medium - 2,
+    fontSize: SIZES.medium,
     fontFamily: FONT.regular,
-    color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
+    color: selectedJob === item.job_id ? "#FFFFFF" : COLORS.primary,
   }),
   location: {
-    fontSize: SIZES.medium - 2,
+    fontSize: SIZES.medium,
     fontFamily: FONT.regular,
-    color: "#B3AEC6",
+    color: COLORS.gray,
+    marginLeft: 5,
   },
 });
 

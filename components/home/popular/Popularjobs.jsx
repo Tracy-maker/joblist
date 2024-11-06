@@ -30,17 +30,17 @@ const Popularjobs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Popular jobs</Text>
+        <Text style={styles.headerTitle}>Popular Jobs</Text>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Text style={styles.headerBtn}>See All</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.cardsContainer}>
         {isLoading ? (
-          <ActivityIndicator size='large' color={COLORS.primary} />
+          <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
-          <Text>Something went wrong</Text>
+          <Text style={styles.errorText}>Something went wrong. Please try again later.</Text>
         ) : (
           <FlatList
             data={data}
@@ -52,8 +52,9 @@ const Popularjobs = () => {
               />
             )}
             keyExtractor={(item) => item.job_id}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
+            contentContainerStyle={styles.flatListContent}
             horizontal
+            showsHorizontalScrollIndicator={false}
           />
         )}
       </View>
